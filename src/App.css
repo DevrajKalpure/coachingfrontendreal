@@ -1,0 +1,421 @@
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* --- 1. ROOT VARIABLES & GLOBAL STYLES --- */
+:root {
+  --primary-color: #0056b3;
+  --secondary-color: #007bff;
+  --background-color: #f8f9fa;
+  --text-color: #333;
+  --heading-color: #2c3e50;
+  --card-bg: #ffffff;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --header-height: 70px; /* Define header height as a variable */
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding-top: var(--header-height); /* Offset for fixed header */
+}
+
+/* --- 2. HEADER & NAVIGATION --- */
+.app-header {
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.app-header .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem; /* Tighter gap for desktop */
+}
+
+.nav-item {
+  padding: 0 1rem;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+  transition: color 0.3s, border-bottom-color 0.3s;
+}
+
+.nav-item:hover {
+  color: var(--primary-color);
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+/* --- 3. HAMBURGER MENU (MOBILE) --- */
+.hamburger-menu {
+  display: none; /* Hidden on desktop */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger-line {
+  width: 2rem;
+  height: 0.25rem;
+  background: var(--heading-color);
+  border-radius: 10px;
+}
+
+/* --- 4. MAIN CONTENT & GENERAL STYLES --- */
+.main-content {
+  min-height: calc(100vh - var(--header-height));
+}
+
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.page-title {
+  text-align: center;
+  color: var(--heading-color);
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+/* --- 5. COMPONENT-SPECIFIC STYLES (Courses, Forms, etc.) --- */
+/* (Keeping your existing component styles organized) */
+
+/* Course Card Styles */
+.course-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+.course-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+.card-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+.card-content h2 { margin-top: 0; }
+.course-meta {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.course-price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+.card-footer {
+  padding: 1.5rem;
+  border-top: 1px solid #eee;
+}
+.btn-details {
+  background-color: var(--secondary-color);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 600;
+  display: block;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+.btn-details:hover {
+  background-color: var(--primary-color);
+}
+
+/* Form Styles */
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.btn-submit {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  background-color: var(--secondary-color);
+  color: white;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+/* Dropdown Container */
+.dropdown {
+  position: relative;
+}
+
+/* Toggle keeps same nav-item style */
+.dropdown-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: var(--header-height);
+  font-weight: 600;
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 0 1rem;
+  border-bottom: 3px solid transparent;
+  transition: color 0.3s, border-bottom-color 0.3s;
+}
+
+.dropdown-toggle:hover {
+  color: var(--primary-color);
+}
+
+/* Dropdown Menu (hidden by default) */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 300px;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+/* Show when hovering */
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* Links inside dropdown */
+.dropdown-link {
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: background 0.2s, color 0.2s;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-link:last-child {
+  border-bottom: none;
+}
+
+.dropdown-link:hover {
+  background: #f5f5f5;
+  color: var(--primary-color);
+}
+
+
+/* --- 6. MOBILE RESPONSIVE STYLES --- */
+@media (max-width: 992px) {
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none; /* Hide the nav links container by default */
+    position: absolute;
+    top: var(--header-height); /* Position it right below the header */
+    left: 0;
+    width: 100%;
+    background: var(--card-bg);
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    animation: slideDown 0.3s ease-in-out;
+  }
+
+  .nav-links.open {
+    display: flex; /* Show it when the menu is open */
+  }
+
+  @keyframes slideDown {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .nav-item {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .nav-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Make the link itself take up the full space */
+  .nav-links .nav-item {
+    display: block;
+    padding: 1.2rem 1rem;
+    text-align: center;
+    border-bottom: none; /* Remove desktop underline */
+  }
+
+  /* Active state for mobile */
+  .nav-links .nav-item.active {
+    color: var(--primary-color);
+    background-color: #eaf5ff; /* A light blue background */
+  }
+
+   /* Dropdown behaves like a collapsible list */
+  .dropdown-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    display: none; /* hidden until toggled */
+    flex-direction: column;
+  }
+
+  /* Show when dropdown has 'open' class */
+  .dropdown.open .dropdown-menu {
+    display: flex;
+  }
+
+  /* Links inside dropdown */
+  .dropdown-link {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+
+  .dropdown-link:last-child {
+    border-bottom: none;
+  }
+}
+
+/* --- ADD THESE STYLES TO THE END OF App.css --- */
+
+/* 12. COURSE DETAIL PAGE STYLES */
+.course-detail-page {
+    animation: fadeIn 0.8s ease-in-out;
+}
+.course-detail-hero {
+    background: var(--heading-color);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+}
+.course-detail-hero h1 {
+    font-size: 2.8rem;
+    margin: 0;
+}
+.course-detail-main-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+.course-detail-info h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+.course-detail-info ul {
+    list-style: none;
+    padding: 0;
+}
+.course-detail-info li {
+    font-size: 1.1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #eee;
+}
+.enquiry-form-container {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 100px;
+}
+.enquiry-form-container h3 {
+    text-align: center;
+    margin-top: 0;
+}
+.btn-submit-enquiry {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form-success-message {
+    text-align: center;
+    padding: 2rem;
+}
+.error-message-form {
+    color: #dc3545;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* 13. UTILITY STYLES */
+.loading-message, .error-message {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 4rem 2rem;
+}
+.error-message {
+    color: #dc3545;
+}
+
+/* Responsive adjustments for detail page */
+@media (max-width: 992px) {
+    .course-detail-main-content {
+        grid-template-columns: 1fr;
+    }
+}

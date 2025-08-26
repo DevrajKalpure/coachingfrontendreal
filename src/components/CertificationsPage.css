@@ -1,0 +1,59 @@
+/* Styles for the Certification Detail Page */
+
+.cert-detail-container { animation: fadeIn 0.8s ease-in-out; }
+.cert-detail-hero {
+    background-color: #00838f;
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+.cert-detail-hero h1 { font-size: 2.8rem; margin: 0 0 0.5rem; }
+.cert-detail-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+.cert-detail-content h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.cert-detail-content h3 { font-size: 1.5rem; margin-top: 2rem; }
+.cert-detail-content p, .cert-detail-content li { line-height: 1.8; }
+.enquiry-form-wrapper-detail {
+    background-color: var(--background-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 100px;
+}
+.enquiry-form-wrapper-detail h3 { text-align: center; margin: 0 0 1.5rem; font-size: 1.5rem; }
+.enquiry-form-detail input,
+.enquiry-form-detail textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.btn-submit-detail {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 992px) {
+    .cert-detail-main { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,174 @@
+/* src/components/Footer.css */
+
+.site-footer {
+    background-color: #2c3e50; /* Dark, professional color */
+    color: #bdc3c7; /* Soft white/grey for text */
+    padding: 4rem 2rem 0;
+    font-size: 0.95rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    padding-bottom: 3rem;
+}
+
+.footer-column h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+/* Underline effect for headings */
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 40px;
+    height: 2px;
+    background-color: var(--secondary-color);
+}
+
+/* Column 1: Brand */
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.mission-statement {
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: #2c3e50;
+    background-color: #ffffff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.social-links a:hover {
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* Column 2: Quick Links */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+    padding-left: 5px;
+}
+
+/* Column 3: Enquiry Form */
+.footer-enquiry-form input,
+.footer-enquiry-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 1px solid #7f8c8d;
+    background-color: #34495e;
+    color: #ecf0f1;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-enquiry-form input::placeholder,
+.footer-enquiry-form textarea::placeholder {
+    color: #95a5a6;
+}
+
+.footer-enquiry-form input:focus,
+.footer-enquiry-form textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+.btn-submit-footer {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit-footer:hover {
+    background-color: var(--primary-color);
+}
+
+/* Footer Bottom Bar */
+.footer-bottom {
+    border-top: 1px solid #34495e;
+    padding: 1.5rem 0;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-legal-links a {
+    color: #bdc3c7;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+
+.footer-legal-links a:hover {
+    color: #ffffff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
