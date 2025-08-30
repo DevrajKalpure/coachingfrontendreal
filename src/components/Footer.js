@@ -28,7 +28,7 @@ function Footer() {
                 
                 {/* Column 1: Brand & Socials */}
                 <div className="footer-column footer-brand">
-                    <Link to="/" className="footer-logo">ProCoach</Link>
+                    <Link to="/" className="footer-logo">jstechnohub</Link>
                     <p className="mission-statement">
                         Your partner in unlocking potential and achieving meaningful success.
                     </p>

@@ -74,7 +74,7 @@ function AppLogic() {
     return (
         <>
             <header className="app-header">
-                <Link to="/" className="logo" onClick={closeMenu}>ProCoach</Link>
+                <Link to="/" className="logo" onClick={closeMenu}>jstechnohub</Link>
                 
                 <button className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     <div className="hamburger-line"></div>
