@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCourseById, submitEnquiry } from '../services/api';
+import './CourseDetailPage.css';
+
 
 function CourseDetailPage() {
-    const { id } = useParams(); // Gets the course ID from the URL (e.g., /course/1)
+    const { id } = useParams(); 
     const [course, setCourse] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // State for the enquiry form
+    // Form states
     const [formData, setFormData] = useState({ name: '', email: '', phoneNumber: '', message: '' });
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formError, setFormError] = useState(null);
+    const [submitting, setSubmitting] = useState(false); // NEW
 
-    // Fetch the specific course data when the page loads
     useEffect(() => {
         const fetchCourse = async () => {
             if (!id) return;
@@ -30,16 +32,16 @@ function CourseDetailPage() {
         fetchCourse();
     }, [id]);
 
-    // Handle form input changes
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    // Handle form submission to your backend
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         setFormError(null);
+        setSubmitting(true);
+
         const enquiryData = {
             ...formData,
             courseId: course.id,
@@ -52,10 +54,11 @@ function CourseDetailPage() {
         } catch (err) {
             setFormError("Failed to submit enquiry. Please check your details and try again.");
             console.error(err);
+        } finally {
+            setSubmitting(false);
         }
     };
 
-    // Render loading/error states or the page content
     if (loading) return <p className="loading-message">Loading course details...</p>;
     if (error) return <p className="error-message">{error}</p>;
     if (!course) return <p>Course not found.</p>;
@@ -88,11 +91,52 @@ function CourseDetailPage() {
                         ) : (
                             <form onSubmit={handleFormSubmit}>
                                 <h3>Enquire About This Course</h3>
-                                <div className="form-group"><input type="text" name="name" placeholder="Your Name*" value={formData.name} onChange={handleInputChange} required /></div>
-                                <div className="form-group"><input type="email" name="email" placeholder="Your Email*" value={formData.email} onChange={handleInputChange} required /></div>
-                                <div className="form-group"><input type="tel" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleInputChange} /></div>
-                                <div className="form-group"><textarea name="message" placeholder="Your Message" rows="4" value={formData.message} onChange={handleInputChange}></textarea></div>
-                                <button type="submit" className="btn-submit-enquiry">Submit Enquiry</button>
+                                <div className="form-group">
+                                    <input 
+                                        type="text" 
+                                        name="name" 
+                                        placeholder="Your Name*" 
+                                        value={formData.name} 
+                                        onChange={handleInputChange} 
+                                        required 
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <input 
+                                        type="email" 
+                                        name="email" 
+                                        placeholder="Your Email*" 
+                                        value={formData.email} 
+                                        onChange={handleInputChange} 
+                                        required 
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <input 
+                                        type="tel" 
+                                        name="phoneNumber" 
+                                        placeholder="Phone Number" 
+                                        value={formData.phoneNumber} 
+                                        onChange={handleInputChange} 
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <textarea 
+                                        name="message" 
+                                        placeholder="Your Message" 
+                                        rows="4" 
+                                        value={formData.message} 
+                                        onChange={handleInputChange}
+                                    ></textarea>
+                                </div>
+                                <button 
+                                    type="submit" 
+                                    className="btn-submit-enquiry" 
+                                    disabled={submitting}
+                                >
+                                    {submitting ? "Submitting..." : "Submit Enquiry"}
+                                </button>
+                                {submitting && <p className="submitting-message">Please wait while we submit your enquiry...</p>}
                                 {formError && <p className="error-message-form">{formError}</p>}
                             </form>
                         )}

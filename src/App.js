@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, NavLink, useNavigate } from 'react-router-dom';
-
-// --- 1. IMPORT YOUR NEW COMPONENT ---
 import ScrollToTop from './components/ScrollToTop';
-
-// All other component imports remain the same
 import HomePage from './components/HomePage';
 import CourseDetail from './components/CourseDetailPage';
 import CoursesPage from './components/CoursesPage';
@@ -16,34 +12,13 @@ import CertificationsPage from './components/CertificationsPage';
 import AdminAuth from './components/AdminAuth';
 import AdminPage from './components/AdminPage';
 import Footer from './components/Footer';
-
-// Styles
 import './App.css';
 
-
-// --- Data for the complex dropdown menu ---
-// const certificationsMenu = [
-//     { name: 'Sales Force', path: '/certifications/sales-force' },
-//     { name: 'CCNA', path: '/certifications/ccna' },
-//     { name: 'Palo Alto', path: '/certifications/palo-alto' },
-//     { name: 'Vmware', path: '/certifications/vmware' },
-//     { name: 'CBAP', path: '/certifications/cbap' },
-//     { 
-//         name: 'Togaf Course', 
-//         submenu: [
-//             { name: '(CAMS) Training & Certification', path: '/certifications/cams-training' },
-//             { name: 'Certified Internal Auditor (CIA)', path: '/certifications/cia-training' },
-//             { name: 'Certified Associate Project Management (CAPM)', path: '/certifications/capm-training' },
-//         ]
-//     }
-// ];
-
-// The AppLogic component does NOT need any changes
 function AppLogic() {
-    // ... all of your existing code for AppLogic remains exactly the same ...
     const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem('isAdminAuthenticated') === 'true');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState(null);
 
     useEffect(() => {
         const checkAuth = () => {
@@ -69,38 +44,64 @@ function AppLogic() {
         navigate('/');
     };
 
-    const closeMenu = () => setIsMenuOpen(false);
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+        setOpenDropdown(null);
+    };
+
+    const toggleDropdown = (name) => {
+  if (window.innerWidth <= 992) { // Only in mobile
+    setOpenDropdown(prev => (prev === name ? null : name));
+  }
+};
+
+
 
     return (
         <>
             <header className="app-header">
                 <Link to="/" className="logo" onClick={closeMenu}>jstechnohub</Link>
                 
-                <button className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                    <div className="hamburger-line"></div>
-                    <div className="hamburger-line"></div>
-                    <div className="hamburger-line"></div>
+                <button 
+                    className={`hamburger-menu ${isMenuOpen ? 'active' : ''}`} 
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    aria-label="Toggle navigation menu"
+                >
+                    <span className="hamburger-line"></span>
+                    <span className="hamburger-line"></span>
+                    <span className="hamburger-line"></span>
                 </button>
 
                 <nav className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
+                    <div className="mobile-menu-header">
+                        <span className="mobile-menu-title">jstechnohub</span>
+                        <button className="mobile-close-btn" onClick={closeMenu}>×</button>
+                    </div>
+                    
                     <NavLink to="/" className="nav-item" onClick={closeMenu} end>Home</NavLink>
                     <NavLink to="/courses" className="nav-item" onClick={closeMenu}>Courses</NavLink>
-                    {/* Dropdown for Certifications */}
-  <div className="nav-item dropdown">
-    <span className="dropdown-toggle">Certifications ▾</span>
-    <div className="dropdown-menu">
-      <NavLink to="/certifications/sales-force" className="dropdown-link" onClick={closeMenu}>Sales Force</NavLink>
-      <NavLink to="/certifications/ccna" className="dropdown-link" onClick={closeMenu}>CCNA</NavLink>
-      <NavLink to="/certifications/palo-alto" className="dropdown-link" onClick={closeMenu}>Palo Alto</NavLink>
-      <NavLink to="/certifications/vmware" className="dropdown-link" onClick={closeMenu}>Vmware</NavLink>
-      <NavLink to="/certifications/cbap" className="dropdown-link" onClick={closeMenu}>CBAP</NavLink>
-      <NavLink to="/certifications/cams-training" className="dropdown-link" onClick={closeMenu}>CAMS Training & Certification</NavLink>
-      <NavLink to="/certifications/cia-training" className="dropdown-link" onClick={closeMenu}>Certified Internal Auditor (CIA)</NavLink>
-      <NavLink to="/certifications/capm-training" className="dropdown-link" onClick={closeMenu}>Certified Associate Project Management (CAPM)</NavLink>
-      
-    </div>
-  </div>
-<NavLink to="/services" className="nav-item" onClick={closeMenu}>Services</NavLink>
+                
+                    {/* Certifications Dropdown */}
+                    <div className={`nav-item dropdown ${openDropdown === 'certifications' ? 'open' : ''}`}>
+                        <span 
+                            className="dropdown-toggle" 
+                            onClick={() => toggleDropdown('certifications')}
+                        >
+                            Certifications <span className="dropdown-arrow">▾</span>
+                        </span>
+                        <div className="dropdown-menu">
+                            <NavLink to="/certifications/sales-force" className="dropdown-link" onClick={closeMenu}>Sales Force</NavLink>
+                            <NavLink to="/certifications/ccna" className="dropdown-link" onClick={closeMenu}>CCNA</NavLink>
+                            <NavLink to="/certifications/palo-alto" className="dropdown-link" onClick={closeMenu}>Palo Alto</NavLink>
+                            <NavLink to="/certifications/vmware" className="dropdown-link" onClick={closeMenu}>Vmware</NavLink>
+                            <NavLink to="/certifications/cbap" className="dropdown-link" onClick={closeMenu}>CBAP</NavLink>
+                            <NavLink to="/certifications/cams-training" className="dropdown-link" onClick={closeMenu}>CAMS Training & Certification</NavLink>
+                            <NavLink to="/certifications/cia-training" className="dropdown-link" onClick={closeMenu}>Certified Internal Auditor (CIA)</NavLink>
+                            <NavLink to="/certifications/capm-training" className="dropdown-link" onClick={closeMenu}>Certified Associate Project Management (CAPM)</NavLink>
+                        </div>
+                    </div>
+
+                    <NavLink to="/services" className="nav-item" onClick={closeMenu}>Services</NavLink>
                     <NavLink to="/resume" className="nav-item" onClick={closeMenu}>Resume</NavLink>
                     <NavLink to="/about" className="nav-item" onClick={closeMenu}>About Us</NavLink>
                     
@@ -108,6 +109,9 @@ function AppLogic() {
                         <NavLink to="/admin" className="nav-item" onClick={closeMenu}>Admin Panel</NavLink>
                     )}
                 </nav>
+                
+                {/* Overlay for when menu is open */}
+                {isMenuOpen && <div className="nav-overlay" onClick={closeMenu}></div>}
             </header>
             
             <main className="main-content">
@@ -128,11 +132,9 @@ function AppLogic() {
     );
 }
 
-// The main App component is where you'll make the change
 function App() {
     return (
         <Router>
-            {/* --- 2. PLACE THE COMPONENT HERE --- */}
             <ScrollToTop />
             <AppLogic />
         </Router>
