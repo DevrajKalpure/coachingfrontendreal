@@ -169,11 +169,12 @@
 
 // export default ResumePage;
 
-
 import React, { useState } from 'react';
-import QRCode from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react'; // Updated import
 import './ResumePage.css';
 import ResumeSamples from './ResumeSamples';
+
+// Pricing data
 const pricingData = {
     '0-3': {
         plans: [
@@ -237,6 +238,7 @@ const pricingData = {
     }
 };
 
+// Features
 const planFeatures = {
     'Resume': ['3-5 Days Delivery', 'International Acceptance', 'ATS-Compatible', 'Unlimited Revisions', '6 Month Support'],
     'Cover Letter': ['3-5 Days Delivery', 'Job & Role Specific Content', 'Global Standard Followed', 'ATS Compatible', '6 Months Support'],
@@ -249,6 +251,7 @@ const comboFeatures = {
     'Pro Online Presence': ['Everything in Resume Plan', 'Everything in LinkedIn Plan', 'Synced & Optimized Profiles', 'Includes ~10% Discount', '6 Month Support']
 };
 
+// Pricing Card Component
 const PricingCard = ({ plan, isCombo, handlePayment }) => (
     <div className={`plan ${isCombo ? 'combo' : ''} ${plan.isFeatured ? 'featured' : ''}`}>
         {plan.isFeatured && <div className="featured-banner">Best Value</div>}
@@ -276,22 +279,22 @@ const PricingCard = ({ plan, isCombo, handlePayment }) => (
 function ResumePage() {
     const [activeTab, setActiveTab] = useState('plans');
     const [activeExperience, setActiveExperience] = useState('14-20');
-    const [upiQRCode, setUpiQRCode] = useState(null); // for desktop fallback
+    const [upiQRCode, setUpiQRCode] = useState(null); // desktop QR modal
 
     const experienceLevels = ['0-3', '3-7', '7-14', '14-20', '20+'];
 
     const handlePayment = (planDetails) => {
-        const upiId = "9032496924@ybl"; // Replace with your UPI ID
-        const payeeName = "Devraj";
+        const upiId = "9032496924@ybl"; // your UPI ID
+        const payeeName = "Your Name"; // change as needed
         const amount = planDetails.price;
         const note = encodeURIComponent(`${planDetails.title} Purchase`);
         const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=INR&tn=${note}`;
 
         if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
-            // Mobile users: open UPI app
+            // Mobile: open UPI app
             window.location.href = upiLink;
         } else {
-            // Desktop users: show QR code
+            // Desktop: show QR code
             setUpiQRCode(upiLink);
         }
     };
@@ -345,7 +348,7 @@ function ResumePage() {
             {upiQRCode && (
                 <div className="qr-modal">
                     <h3>Scan QR Code to Pay via UPI</h3>
-                    <QRCode value={upiQRCode} size={200} />
+                    <QRCodeCanvas value={upiQRCode} size={200} />
                     <button onClick={() => setUpiQRCode(null)}>Close</button>
                 </div>
             )}
