@@ -38,26 +38,29 @@ function CourseDetailPage() {
     };
 
     const handleFormSubmit = async (e) => {
-        e.preventDefault();
-        setFormError(null);
-        setSubmitting(true);
+    e.preventDefault();
+    setFormError(null);
 
-        const enquiryData = {
-            ...formData,
-            courseId: course.id,
-            courseTitle: course.title
-        };
+    // Show acknowledgement immediately
+    setFormSubmitted(true);
 
-        try {
-            await submitEnquiry(enquiryData);
-            setFormSubmitted(true);
-        } catch (err) {
-            setFormError("Failed to submit enquiry. Please check your details and try again.");
-            console.error(err);
-        } finally {
-            setSubmitting(false);
-        }
+    const enquiryData = {
+        ...formData,
+        courseId: course.id,
+        courseTitle: course.title
     };
+
+    try {
+        await submitEnquiry(enquiryData);
+        // keep success message (no change)
+    } catch (err) {
+        setFormError("Failed to submit enquiry. Please check your details and try again.");
+        console.error(err);
+        // rollback if API failed
+        setFormSubmitted(false);
+    }
+};
+
 
     if (loading) return <p className="loading-message">Loading course details...</p>;
     if (error) return <p className="error-message">{error}</p>;
