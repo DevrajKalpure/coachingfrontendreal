@@ -1,8 +1,7 @@
 import React from 'react';
 import './AboutUsPage.css';
 
-// You can replace this with a real photo of the founder or a professional stock photo
-import founderImage from '../assets/founder-image.jpg'; // Make sure to create an assets folder in src and add an image
+// The 'import founderImage' line has been removed.
 
 function AboutUsPage() {
     return (
@@ -15,24 +14,18 @@ function AboutUsPage() {
                 </div>
             </header>
 
-            {/* Section 2: Our Story / Meet the Founder */}
+            {/* Section 2: Our Story */}
             <section className="about-section story-section">
                 <div className="story-content">
                     <h2>Our Story: From Challenge to Calling</h2>
                     <p>
-                        ProCoach was born not from a business plan, but from a personal breakthrough. Our founder, Alex Dawson, spent years navigating the high-pressure corporate world, feeling stuck and unfulfilled. It was through a journey of self-discovery and mentorship that Alex realized true success isn't about climbing a ladder, but about building a life aligned with one's authentic purpose.
+                        <strong>JSTechnoHub</strong> was born not from a business plan, but from a personal breakthrough. Our founder, Alex Dawson, spent years navigating the high-pressure corporate world, feeling stuck and unfulfilled. It was through a journey of self-discovery and mentorship that Alex realized true success isn't about climbing a ladder, but about building a life aligned with one's authentic purpose.
                     </p>
                     <p>
-                        This transformation sparked a calling: to provide others with the tools, support, and accountability needed to make their own pivotal shifts. We don't just teach theory; we coach from a place of deep, personal experience. [1]
+                        This transformation sparked a calling: to provide others with the tools, support, and accountability needed to make their own pivotal shifts. We don't just teach theory; we coach from a place of deep, personal experience.
                     </p>
                 </div>
-                <div className="story-image">
-                    <img src={founderImage} alt="Alex Dawson, Founder of ProCoach" />
-                    <div className="image-caption">
-                        <strong>Alex Dawson</strong>
-                        <span>Founder & Head Coach</span>
-                    </div>
-                </div>
+                {/* The entire 'story-image' div has been removed. */}
             </section>
 
             {/* Section 3: Our Philosophy */}
@@ -41,7 +34,7 @@ function AboutUsPage() {
                 <div className="philosophy-cards">
                     <div className="philosophy-card">
                         <h3>1. You Are the Expert</h3>
-                        <p>We believe you hold the answers. Our role is not to dictate, but to ask powerful questions that unlock your inner wisdom and empower you to find your own path. [5]</p>
+                        <p>We believe you hold the answers. Our role is not to dictate, but to ask powerful questions that unlock your inner wisdom and empower you to find your own path.</p>
                     </div>
                     <div className="philosophy-card">
                         <h3>2. Action Creates Clarity</h3>

@@ -181,32 +181,84 @@ function AdminPage() {
                             </div>
                         )}
 
-                        {activeTab === 'enquiries' && (
-                             <div className="admin-section card">
-                                <div className="enquiry-header">
-                                    <h2>Client Enquiries</h2>
-                                    <span>{enquiries.filter(e => !e.clarified).length} pending actions</span>
-                                </div>
-                                <div className="enquiry-table-container">
-                                    <table className="enquiry-table">
-                                        <thead>
-                                            <tr><th>Status</th><th>Course</th><th>Contact Info</th><th>Message</th><th>Action</th></tr>
-                                        </thead>
-                                        <tbody>
-                                            {enquiries.length > 0 ? enquiries.map(enquiry => (
-                                                <tr key={enquiry.id} className={enquiry.clarified ? 'clarified' : 'pending'}>
-                                                    <td><span className={`status-badge status-${enquiry.clarified ? 'clarified' : 'pending'}`}>{enquiry.clarified ? 'Clarified' : 'Pending'}</span></td>
-                                                    <td>{enquiry.courseTitle}</td>
-                                                    <td><strong>{enquiry.name}</strong><br />{enquiry.email}<br />{enquiry.phoneNumber}</td>
-                                                    <td className="message-cell">{enquiry.message}</td>
-                                                    <td><button className="btn-toggle-status" onClick={() => handleToggleClarified(enquiry.id)}>Mark as {enquiry.clarified ? 'Pending' : 'Clarified'}</button></td>
-                                                </tr>
-                                            )) : <tr><td colSpan="5">No enquiries yet.</td></tr>}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        )}
+{activeTab === 'enquiries' && (
+  <div className="admin-section card">
+    <div className="enquiry-header">
+      <h2>Client Enquiries</h2>
+      <span>{enquiries.filter(e => !e.clarified).length} pending actions</span>
+    </div>
+    <div className="enquiry-table-container">
+      <table className="enquiry-table">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Title</th>
+            <th>Contact Info</th>
+            <th>Message</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {enquiries.length > 0 ? (
+            enquiries.map((enquiry) => (
+              <tr
+                key={`${enquiry.type}-${enquiry.id}`}
+                className={enquiry.clarified ? "clarified" : "pending"}
+              >
+                <td>
+                  <span
+                    className={`status-badge status-${
+                      enquiry.clarified ? "clarified" : "pending"
+                    }`}
+                  >
+                    {enquiry.clarified ? "Clarified" : "Pending"}
+                  </span>
+                </td>
+
+                {/* Show whether it's a course or certification */}
+                <td>{enquiry.type}</td>
+
+                {/* Show courseTitle or certificationName */}
+                <td>{enquiry.title || "Untitled"}</td>
+
+
+                <td>
+                  <strong>{enquiry.name}</strong>
+                  <br />
+                  {enquiry.email}
+                  <br />
+                  {enquiry.phone || "N/A"}
+                </td>
+
+                <td className="message-cell">{enquiry.message}</td>
+
+                {/* Toggle only for course enquiries */}
+                <td>
+                  {enquiry.type === "course" ? (
+                    <button
+                      className="btn-toggle-status"
+                      onClick={() => handleToggleClarified(enquiry.id)}
+                    >
+                      Mark as {enquiry.clarified ? "Pending" : "Clarified"}
+                    </button>
+                  ) : (
+                    <em>Not applicable</em>
+                  )}
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6">No enquiries yet.</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  </div>
+)}
+
                     </>
                 )}
             </div>

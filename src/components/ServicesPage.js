@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import './ServicesPage.css';
 
-// You can replace this with a real client photo or a professional stock photo
-import testimonialImage from '../assets/client-testimonial.jpg'; // Create an assets folder in src and add an image
-
 // Data for our services
 const servicesData = [
     {
-        title: "Career Transition Coaching",
-        description: "Feeling stuck or unfulfilled in your current role? We'll partner with you to navigate the complexities of a career change, uncover your passions, and land a job you love.",
-        outcomes: ["Clarify your ideal career path", "Develop a powerful personal brand", "Master interview and negotiation skills", "Create a strategic job search plan"]
+        title: "Master Oracle SQL & PL/SQL – Unlock High-Demand Tech Skills",
+description: "Ready to elevate your career with in-demand database skills? Join our on-demand Oracle SQL & PL/SQL webinar to gain practical, interview-focused expertise and advance your tech career.",
+outcomes: [
+  "Build core SQL and advanced PL/SQL skills",
+  "Apply real-time projects to reinforce learning",
+  "Learn performance tuning and optimization techniques",
+  "Prepare for technical interviews with confidence"
+]
     },
-    {
-        title: "Leadership Development",
-        description: "Move from being a manager to an influential leader. This program is for new and aspiring leaders who want to build high-performing teams and lead with confidence and vision.",
-        outcomes: ["Define your authentic leadership style", "Improve communication and influence", "Learn to motivate and empower your team", "Manage conflict and lead through change"]
-    },
-    {
-        title: "Personal Growth & Mindset",
-        description: "Unlock your true potential by overcoming limiting beliefs. This deeply personal coaching experience helps you build unshakable confidence and a resilient mindset.",
-        outcomes: ["Identify and reframe limiting beliefs", "Build powerful, lasting habits", "Improve self-awareness and confidence", "Set and achieve meaningful personal goals"]
-    }
+    {title: "Master Java Programming – From Basics to Advanced",
+description: "Accelerate your career with our comprehensive Java course. Learn core Java, object-oriented programming, and advanced concepts with hands-on, project-focused training designed for job readiness.",
+outcomes: [
+  "Build strong foundations in core Java and OOP concepts",
+  "Develop real-time projects and practical coding skills",
+  "Master advanced topics like multithreading, collections, and Java streams",
+  "Prepare for Java technical interviews and coding assessments"
+]
+}
 ];
 
 // Reusable FAQ Item Component
@@ -65,7 +66,7 @@ function ServicesPage() {
                             <ul>
                                 {service.outcomes.map((item, i) => <li key={i}>{item}</li>)}
                             </ul>
-                            <a href="/contact" className="service-button">Learn More</a>
+                            <a href="/courses" className="service-button">Learn More</a>
                         </div>
                     ))}
                 </div>
@@ -100,11 +101,11 @@ function ServicesPage() {
             {/* Section 4: Testimonial */}
             <section className="testimonial-section">
                  <div className="testimonial-content">
-                    <img src={testimonialImage} alt="Happy Client" className="testimonial-image"/>
+                    {/* The <img> tag has been removed from here. */}
                     <blockquote>
-                        "Working with ProCoach was a game-changer. I not only found a new career path but also gained a level of confidence I never thought possible. The investment paid for itself tenfold."
+                        "Working with JSTechnoHub was a game-changer. I not only found a new career path but also gained a level of confidence I never thought possible. The investment paid for itself tenfold."
                     </blockquote>
-                    <cite>- Sarah L., Former Client</cite>
+                    <cite>- Priya Sharma, Former Client</cite>
                  </div>
             </section>
 

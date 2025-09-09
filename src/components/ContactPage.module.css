@@ -1,0 +1,272 @@
+/* ==> The CSS code below can be directly copied into your ContactPage.module.css file. <== */
+
+/* 1. TYPOGRAPHY & COLOR PALETTE 
+   Using CSS variables for easy theme management.
+   Import this font in your main index.css or index.html: 
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*/
+:root {
+  --primary-color: #6d5ad6; /* A vibrant, modern purple */
+  --primary-hover: #5a4ab3;
+  --secondary-color: #1a202c; /* A dark charcoal for text */
+  --text-light: #4a5568;
+  --bg-light: #f7fafc;
+  --bg-white: #ffffff;
+  --border-color: #e2e8f0;
+}
+
+.contactPage {
+  font-family: 'Poppins', sans-serif;
+  color: var(--secondary-color);
+  background-color: var(--bg-white);
+}
+
+/* 2. HERO SECTION 
+   Creates a welcoming, high-impact introduction.
+*/
+.contactHeader {
+  text-align: center;
+  padding: 80px 30px;
+  background-color: var(--bg-light);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.contactHeader h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+}
+
+.contactHeader p {
+  font-size: 1.125rem;
+  color: var(--text-light);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* 3. PRIMARY CALL-TO-ACTION (CTA) SECTION 
+   Designed to draw maximum attention to the most important action.
+*/
+.ctaSection {
+  text-align: center;
+  padding: 60px 30px;
+  background-color: var(--bg-white);
+}
+
+.ctaSection h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.ctaSection p {
+  color: var(--text-light);
+  max-width: 550px;
+  margin: 0 auto 2rem auto;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 16px 40px;
+  background-image: linear-gradient(45deg, var(--primary-color) 0%, #8b7ad6 100%);
+  color: var(--bg-white);
+  text-decoration: none;
+  border-radius: 50px; /* Pill shape */
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 10px 20px -5px rgba(109, 90, 214, 0.4);
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px -5px rgba(109, 90, 214, 0.5);
+}
+
+/* 4. MAIN BODY (FORM & OTHER OPTIONS)
+   A clean, two-column layout that's easy to navigate.
+*/
+.contactBody {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  padding: 80px 30px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.formWrapper {
+  flex: 2; /* Takes up more space */
+  min-width: 300px;
+}
+
+.otherOptions {
+  flex: 1; /* Takes up less space */
+  min-width: 250px;
+  padding-top: 10px;
+}
+
+.formWrapper h2, .otherOptions h3 {
+  font-size: 1.75rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+/* Underline effect for headings */
+.formWrapper h2::after, .otherOptions h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary-color);
+}
+
+/* Form element styling */
+.formWrapper label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.formWrapper input,
+.formWrapper textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formWrapper input:focus,
+.formWrapper textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(109, 90, 214, 0.2);
+}
+
+.submitButton {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--secondary-color);
+  color: var(--bg-white);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover {
+  background-color: #000;
+}
+
+.responseTime {
+  text-align: center;
+  margin-top: 20px;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* Other Contact Options styling */
+.otherOptions p {
+  margin-bottom: 1.5rem;
+}
+
+.socialLinks a {
+  margin-right: 20px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.socialLinks a:hover {
+  color: var(--primary-hover);
+}
+
+/* 5. FAQ SECTION 
+   Clean and easily scannable.
+*/
+.faqSection {
+  padding: 80px 30px;
+  background-color: var(--bg-light);
+  border-top: 1px solid var(--border-color);
+}
+
+.faqSection h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 3rem;
+}
+
+.faqItem {
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
+  border-left: 3px solid var(--primary-color);
+  padding-left: 20px;
+}
+
+.faqItem h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.faqItem p {
+  color: var(--text-light);
+  margin: 0;
+}
+
+.faqItem a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* 6. RESPONSIVE DESIGN */
+@media (max-width: 900px) {
+  .contactBody {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactHeader h1 {
+    font-size: 2.25rem;
+  }
+  .contactBody {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+  }
+  .formWrapper, .otherOptions {
+    width: 100%;
+    max-width: 500px; /* Ensure form isn't too wide on tablets */
+  }
+}
+
+.statusMessage {
+  text-align: center;       /* Centers the text horizontally */
+  margin-top: 15px;         /* Optional spacing from the form */
+}
+
+.successMsg {
+  color: green;
+  font-weight: 600;
+}
+
+.errorMsg {
+  color: red;
+  font-weight: 600;
+}

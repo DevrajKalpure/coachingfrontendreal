@@ -11,7 +11,12 @@ import CertificationsListPage from './components/CertificationsListPage';
 import CertificationsPage from './components/CertificationsPage';
 import AdminAuth from './components/AdminAuth';
 import AdminPage from './components/AdminPage';
+import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
+import PrivacyPolicyPage from './components/PrivacyPolicyPage';
+import TermsPage from './components/TermsPage';
+import CancellationPolicyPage from './components/CancellationPolicyPage';
+import PaymentSuccessPage from './components/PaymentSuccessPage';
 import './App.css';
 
 function AppLogic() {
@@ -104,7 +109,7 @@ function AppLogic() {
                     <NavLink to="/services" className="nav-item" onClick={closeMenu}>Services</NavLink>
                     <NavLink to="/resume" className="nav-item" onClick={closeMenu}>Resume</NavLink>
                     <NavLink to="/about" className="nav-item" onClick={closeMenu}>About Us</NavLink>
-                    
+                    <NavLink to="/contact" className="nav-item" onClick={closeMenu}>Contact Us</NavLink>
                     {isAuthenticated && (
                         <NavLink to="/admin" className="nav-item" onClick={closeMenu}>Admin Panel</NavLink>
                     )}
@@ -124,6 +129,11 @@ function AppLogic() {
                     <Route path="/resume" element={<ResumePage />} />
                     <Route path="/services" element={<ServicesPage />} />
                     <Route path="/about" element={<AboutUsPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                    <Route path="/terms-&-conditions" element={<TermsPage />} />
+                    <Route path="/cancellation-policy" element={<CancellationPolicyPage />} />
+                    <Route path="/payment-success" element={<PaymentSuccessPage />} /> {/* <-- Add this route */}
                     <Route path="/admin" element={ isAuthenticated ? <AdminPage onLogout={handleLogout} /> : <AdminAuth onLogin={handleLogin} /> } />
                 </Routes>
             </main>

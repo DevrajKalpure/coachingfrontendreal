@@ -194,7 +194,7 @@
 // }
 
 // export default HomePage;
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
 import testimonialImage from "../assets/client-testimonial-2.jpg";
 import "./HomePage.css";
@@ -345,7 +345,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Courses */}
+      {/* Featured Courses
       {featuredCourses.length > 0 && (
         <section className="home-section featured-courses fade-in">
           <h2 className="section-title">Featured Courses</h2>
@@ -358,19 +358,19 @@ export default function HomePage() {
             <a href="/courses" className="btn-secondary">View All Courses</a>
           </div>
         </section>
-      )}
+      )} */}
 
       {/* Upcoming Batches */}
       <section className="upcoming-batches fade-in">
         <h2 className="section-title">Upcoming Batches</h2>
         <div className="batch-grid">
           <div className="batch-card">
-            <h3>Career Coaching Bootcamp</h3>
+            <h3>SQL</h3>
             <p>Starts: Sept 15, 2025</p>
             <a href="/contact" className="btn-secondary">Enroll Now</a>
           </div>
           <div className="batch-card">
-            <h3>Leadership Growth Workshop</h3>
+            <h3>Java</h3>
             <p>Starts: Oct 1, 2025</p>
             <a href="/contact" className="btn-secondary">Enroll Now</a>
           </div>
@@ -380,11 +380,11 @@ export default function HomePage() {
       {/* Testimonials */}
       <section className="home-section home-testimonial fade-in">
         <div className="testimonial-content-home">
-          <img src={testimonialImage} alt="Happy coaching client" className="testimonial-image-home"/>
+          {/* <img src={testimonialImage} alt="Happy coaching client" className="testimonial-image-home"/> */}
           <blockquote>
             "This wasn't just coaching; it was a total mindset shift. I achieved more in three months with ProCoach than I did in the last three years on my own."
           </blockquote>
-          <cite>- Michael P., Tech Lead</cite>
+          <cite>- Devraj Kalpure</cite>
         </div>
       </section>
 
@@ -417,8 +417,8 @@ export default function HomePage() {
       {/* CTA */}
       <section className="home-cta fade-in">
         <h2 className="cta-title">Ready to Take Control of Your Future?</h2>
-        <p>A complimentary 30-minute discovery call is the first step. There's no obligation, only opportunity.</p>
-        <a href="/contact" className="btn-primary-cta">Book Your Free Call</a>
+        <p>A complimentary 30-minute discovery call is the first step. There's no obligation, only opportunity.</p><br></br>
+        <a href="tel:+918743039914" className="btn-primary-cta">Book Your Free Call</a>
       </section>
     </div>
   );
