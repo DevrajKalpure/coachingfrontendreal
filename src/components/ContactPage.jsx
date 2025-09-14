@@ -119,11 +119,11 @@ const ContactPage = () => {
         <ContactForm />
         <div className={styles.otherOptions}>
           <h3>Other Ways to Connect</h3>
-          <p><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+          <p><strong>Email:</strong> <a href="mailto:Juned.salmani835@gmail.com">Email us</a></p>
           <p><strong>Follow Me:</strong></p>
           <div className={styles.socialLinks}>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.linkedin.com/company/jstechnohub/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.instagram.com/jstechno_hub?igsh=cG81djVwZnNrbDZj" target="_blank" rel="noopener noreferrer">Instagram</a>
           </div>
         </div>
       </div>

@@ -39,8 +39,8 @@
 
 import axios from 'axios';
 
-const API_URL = 'https://coachingwebsite-production.up.railway.app/api';
-//const API_URL = 'http://localhost:8080/api';
+//const API_URL = 'https://coachingwebsite-production.up.railway.app/api';
+const API_URL = 'http://localhost:8080/api';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -77,5 +77,13 @@ export const verifyOtpApi = (email, otp) =>
 
 // ----------------- User -----------------
 export const createUser = (userData) => api.post('/user', userData);
+
+
+// ----------------- Interview Questions -----------------
+export const addInterviewQuestion = (questionData) =>
+  api.post('/interview-questions', questionData);
+
+export const getAllInterviewQuestions = () =>
+  api.get('/interview-questions');
 
 export default api;

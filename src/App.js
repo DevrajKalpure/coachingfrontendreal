@@ -17,6 +17,11 @@ import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import TermsPage from './components/TermsPage';
 import CancellationPolicyPage from './components/CancellationPolicyPage';
 import PaymentSuccessPage from './components/PaymentSuccessPage';
+import InterviewQuestionsPage from './components/InterveiwQuestionPage';
+// CORRECTED: Import paths now point to the 'blog' subfolder
+//import BlogPage from './components/BlogPage';
+//import SinglePostPage from './components/SinglePostPage';
+
 import './App.css';
 
 function AppLogic() {
@@ -55,12 +60,12 @@ function AppLogic() {
     };
 
     const toggleDropdown = (name) => {
-  if (window.innerWidth <= 992) { // Only in mobile
-    setOpenDropdown(prev => (prev === name ? null : name));
-  }
-};
-
-
+      // This logic correctly ensures the dropdown only opens on tap on mobile devices.
+      // For desktop, you would typically use CSS :hover pseudo-class to show the dropdown.
+      if (window.innerWidth <= 992) {
+        setOpenDropdown(prev => (prev === name ? null : name));
+      }
+    };
 
     return (
         <>
@@ -108,6 +113,8 @@ function AppLogic() {
 
                     <NavLink to="/services" className="nav-item" onClick={closeMenu}>Services</NavLink>
                     <NavLink to="/resume" className="nav-item" onClick={closeMenu}>Resume</NavLink>
+                    {/* ADDED: A navigation link for the blog */}
+                    <NavLink to="/interview-questions" className="nav-item" onClick={closeMenu}>Blog</NavLink>
                     <NavLink to="/about" className="nav-item" onClick={closeMenu}>About Us</NavLink>
                     <NavLink to="/contact" className="nav-item" onClick={closeMenu}>Contact Us</NavLink>
                     {isAuthenticated && (
@@ -115,7 +122,6 @@ function AppLogic() {
                     )}
                 </nav>
                 
-                {/* Overlay for when menu is open */}
                 {isMenuOpen && <div className="nav-overlay" onClick={closeMenu}></div>}
             </header>
             
@@ -131,9 +137,12 @@ function AppLogic() {
                     <Route path="/about" element={<AboutUsPage />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-                    <Route path="/terms-&-conditions" element={<TermsPage />} />
+                    {/* CORRECTED: Using a standard URL format */}
+                    <Route path="/terms-of-service" element={<TermsPage />} />
                     <Route path="/cancellation-policy" element={<CancellationPolicyPage />} />
-                    <Route path="/payment-success" element={<PaymentSuccessPage />} /> {/* <-- Add this route */}
+                    <Route path="/payment-success" element={<PaymentSuccessPage />} />
+                    {/* These routes for the blog pages are correct */}
+                    <Route path="/interview-questions" element={<InterviewQuestionsPage />} />
                     <Route path="/admin" element={ isAuthenticated ? <AdminPage onLogout={handleLogout} /> : <AdminAuth onLogin={handleLogin} /> } />
                 </Routes>
             </main>

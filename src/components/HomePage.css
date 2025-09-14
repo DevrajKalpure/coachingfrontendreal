@@ -422,6 +422,48 @@ cite {
 }
 .btn-primary-cta:hover { background: var(--accent); transform: scale(1.07);}
 
+.partners-section {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fafafa;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.partners-section {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f9fafb;
+}
+
+.partners-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px; /* space between logos */
+  flex-wrap: wrap; /* ensures responsiveness on small screens */
+  margin-top: 30px;
+}
+
+.partners-logos img {
+  width: 150px;   /* force same width */
+  height: 60px;   /* force same height */
+  object-fit: contain; /* keep proportions */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  transition: transform 0.3s ease;
+}
+
+.partners-logos img:hover {
+  transform: scale(1.1);
+}
+.partners-logos img[alt="Microsoft"] {
+  width: 200px;   /* slightly wider */
+  height: auto;   /* keep proportions */
+}
 
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {

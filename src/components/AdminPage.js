@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllCourses, createCourse, updateCourse, deleteCourse, getAllEnquiries, toggleEnquiryClarified } from '../services/api';
 import './AdminPage.css';
+import InterviewQuestionForm from './InterviewQuestionForm';
 
 // A dedicated component for the course form, now displayed within a tab
 const CourseForm = ({ initialCourse, isEditing, onSave, onCancel }) => {
@@ -147,6 +148,7 @@ function AdminPage() {
                 <button className={`tab-button ${activeTab === 'manage' ? 'active' : ''}`} onClick={() => setActiveTab('manage')}>Manage Course</button>
                 <button className={`tab-button ${activeTab === 'existing' ? 'active' : ''}`} onClick={() => setActiveTab('existing')}>Existing Courses</button>
                 <button className={`tab-button ${activeTab === 'enquiries' ? 'active' : ''}`} onClick={() => setActiveTab('enquiries')}>Manage Enquiries</button>
+                <button className={`tab-button ${activeTab === 'interviewQuestions' ? 'active' : ''}`} onClick={() => setActiveTab('interviewQuestions')}>Interview Questions</button>
             </div>
 
             <div className="tab-content">
@@ -258,6 +260,11 @@ function AdminPage() {
     </div>
   </div>
 )}
+
+                                                {/* --- ADD NEW TAB CONTENT --- */}
+                        {activeTab === 'interviewQuestions' && (
+                            <InterviewQuestionForm />
+                        )}
 
                     </>
                 )}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { submitCertificationEnquiry } from '../services/api'; // updated API call
+import { FaLinkedin, FaInstagram } from "react-icons/fa";
 import './Footer.css';
 
 function Footer() {
@@ -51,10 +52,24 @@ function Footer() {
                         Your partner in unlocking potential and achieving meaningful success.
                     </p>
                     <div className="social-links">
-                        <a href="#" aria-label="LinkedIn">LI</a>
-                        <a href="#" aria-label="Twitter">TW</a>
-                        <a href="#" aria-label="Instagram">IN</a>
-                    </div>
+  <a
+    href="https://www.linkedin.com/company/jstechnohub/"
+    aria-label="LinkedIn"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <FaLinkedin size={24} />
+  </a>
+  <a
+    href="https://www.instagram.com/jstechno_hub?igsh=cG81djVwZnNrbDZj"
+    aria-label="Instagram"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <FaInstagram size={24} />
+  </a>
+</div>
+
                 </div>
 
                 {/* Column 2: Quick Links */}

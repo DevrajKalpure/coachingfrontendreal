@@ -387,17 +387,29 @@ export default function HomePage() {
           <cite>- Devraj Kalpure</cite>
         </div>
       </section>
+{/* Recruiters/Partners */}
+<section className="partners-section fade-in">
+  <h2 className="section-title">Our Students Work At</h2>
+  <div className="partners-logos">
+    <img 
+      src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" 
+      alt="Google" 
+    />
+    <img 
+      src="https://logospng.org/download/microsoft/logo-microsoft-1024.png" 
+      alt="Microsoft" 
+    />
+    <img 
+      src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
+      alt="Amazon" 
+    />
+    <img 
+      src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" 
+      alt="Netflix" 
+    />
+  </div>
+</section>
 
-      {/* Recruiters/Partners */}
-      <section className="partners-section fade-in">
-        <h2 className="section-title">Our Students Work At</h2>
-        <div className="partners-logos">
-          <div className="partner-logo">Google</div>
-          <div className="partner-logo">Microsoft</div>
-          <div className="partner-logo">Amazon</div>
-          <div className="partner-logo">Startups</div>
-        </div>
-      </section>
 
       {/* Blog/Resources */}
       <section className="blog-section fade-in">
