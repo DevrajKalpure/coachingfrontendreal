@@ -1,4 +1,4 @@
-/* Import Poppins and slick-carousel styles if not already */
+/* Import Poppins and slick-carousel styles */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
@@ -41,26 +41,24 @@ body {
   top: 0;
   left: 0;
   height: 100%;
-  width: 85%; /* 👈 dark area only on the left side */
+  width: 85%; /* dark overlay left side */
   background: linear-gradient(to right, rgba(0, 0, 0, 1), transparent);
-  z-index: 1; /* sits above the image, below text */
+  z-index: 1;
   border-radius: 0 0 var(--radius) var(--radius);
 }
 .carousel-bg {
   width: 100%;
   height: 86vh;
   object-fit: cover;
-  object-position: right center; /* focus image on right */
+  object-position: right center;
   filter: grayscale(13%) brightness(85%);
   position: absolute;
   top: 0;
-  right: 0;   /* 👈 anchor image to the right */
-  left: auto; /* 👈 prevent forcing it from left */
+  right: 0;
   z-index: 0;
   border-radius: 0 0 var(--radius) var(--radius);
   transition: filter .8s;
 }
-
 
 .carousel-content {
   position: relative; z-index: 2;
@@ -225,9 +223,6 @@ body {
   grid-template-columns: repeat(auto-fit,minmax(285px,1fr));
   gap: 2.2rem; margin-top: 2.2rem;
 }
-.animated-card {
-  animation: fadeUp 0.85s both;
-}
 .featured-course-card {
   background: var(--card-bg);
   border-radius: var(--radius);
@@ -264,12 +259,6 @@ body {
 .btn-secondary:hover {
   background: var(--primary);
   transform: scale(1.07);
-}
-
-/* View all link */
-.view-all-link {
-  text-align: center;
-  margin-top: 2.1rem;
 }
 
 /* --- UPCOMING BATCHES --- */
@@ -335,28 +324,31 @@ cite {
 
 /* --- PARTNERS --- */
 .partners-section {
-  margin-top: 3rem;
-  opacity: 0; animation: fadeIn 1.12s 1.2s forwards;
+  text-align: center;
+  padding: 60px 20px;
+  background: #f9fafb;
 }
 .partners-logos {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2.2rem;
   justify-content: center;
-  padding: 2.1rem;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 30px;
 }
-.partner-logo {
-  background: #fff;
-  padding: 1.1rem 2.1rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  font-weight: bold;
-  font-size: 1.15rem;
-  transition: transform .13s, box-shadow .16s;
+.partners-logos img {
+  width: 150px;
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  transition: transform 0.3s ease;
 }
-.partner-logo:hover {
-  transform: scale(1.07) rotate(-2deg);
-  box-shadow: 0 7px 20px rgba(0,86,179,0.10);
+.partners-logos img:hover {
+  transform: scale(1.1);
+}
+.partners-logos img[alt="Microsoft"] {
+  width: 200px;
+  height: auto;
 }
 
 /* --- BLOG/RESOURCES --- */
@@ -413,80 +405,24 @@ cite {
 }
 .btn-primary-cta:hover { background: var(--accent); transform: scale(1.07);}
 
-.partners-section {
-  text-align: center;
-  padding: 60px 20px;
-  background: #fafafa;
-}
-
-.section-title {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  font-weight: bold;
-}
-
-.partners-section {
-  text-align: center;
-  padding: 60px 20px;
-  background: #f9fafb;
-}
-
-.partners-logos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px; /* space between logos */
-  flex-wrap: wrap; /* ensures responsiveness on small screens */
-  margin-top: 30px;
-}
-
-.partners-logos img {
-  width: 150px;   /* force same width */
-  height: 60px;   /* force same height */
-  object-fit: contain; /* keep proportions */
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-  transition: transform 0.3s ease;
-}
-
-.partners-logos img:hover {
-  transform: scale(1.1);
-}
-.partners-logos img[alt="Microsoft"] {
-  width: 200px;   /* slightly wider */
-  height: auto;   /* keep proportions */
-}
-/* --- RESPONSIVE FIXES FOR CHROME MOBILE SIMULATOR --- */
+/* --- RESPONSIVE FIXES FOR CHROME MOBILE --- */
 @media (max-width: 900px) {
   .premium-header,
   .carousel-bg,
   .carousel-content,
   .header-carousel,
   .carousel-slide {
-    height: 75vh; /* taller hero for better balance */
+    height: 75vh;
   }
-
   .carousel-content {
-    left: 20px;
+    left: 15px;
     max-width: 95vw;
     padding: 0 15px;
     text-align: left;
   }
-
-  .carousel-title {
-    font-size: 1.8rem; /* larger headline */
-    line-height: 1.3;
-  }
-
-  .carousel-sub {
-    font-size: 1rem;
-    max-width: 90%;
-  }
-
-  .carousel-btn {
-    font-size: 0.95rem;
-    padding: 0.9rem 1.6rem;
-  }
-
+  .carousel-title { font-size: 2rem; line-height: 1.3; }
+  .carousel-sub { font-size: 1rem; max-width: 90%; }
+  .carousel-btn { font-size: 0.95rem; padding: 0.9rem 1.6rem; }
   .home-highlights,
   .services-overview,
   .training-features,
@@ -496,54 +432,18 @@ cite {
     padding: 2.5rem 1rem;
     margin: 1rem 0;
   }
-
-  .highlight-card {
-    font-size: 1rem;
-    padding: 1.5rem;
-  }
-
-  .service-item,
-  .feature-card,
-  .batch-card,
-  .blog-card {
-    padding: 1.5rem;
-  }
-
-  .section-title {
-    font-size: 1.6rem;
-  }
-
-  .partners-logos img {
-    width: 120px;
-    height: 50px;
-  }
+  .highlight-card { font-size: 1rem; padding: 1.5rem; }
+  .service-item, .feature-card, .batch-card, .blog-card { padding: 1.5rem; }
+  .section-title { font-size: 1.6rem; }
+  .partners-logos img { width: 120px; height: 50px; }
 }
 
 @media (max-width: 600px) {
-  .carousel-title {
-    font-size: 1.5rem;
-  }
-  .carousel-sub {
-    font-size: 0.9rem;
-  }
-  .carousel-btn {
-    padding: 0.8rem 1.4rem;
-    font-size: 0.85rem;
-  }
-
-  .home-cta {
-    padding: 2rem 1rem;
-  }
-  .cta-title {
-    font-size: 1.6rem;
-    line-height: 1.3;
-  }
-
-  .partners-logos {
-    gap: 20px;
-  }
-  .partners-logos img {
-    width: 100px;
-    height: auto;
-  }
+  .carousel-title { font-size: 1.5rem; }
+  .carousel-sub { font-size: 0.9rem; }
+  .carousel-btn { font-size: 0.85rem; padding: 0.8rem 1.4rem; }
+  .home-cta { padding: 2rem 1rem; }
+  .cta-title { font-size: 1.6rem; line-height: 1.3; }
+  .partners-logos { gap: 20px; }
+  .partners-logos img { width: 100px; height: auto; }
 }
