@@ -1,394 +1,194 @@
-// import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
-// import { getAllCourses } from "../services/api";
-// import testimonialImage from "../assets/client-testimonial-2.jpg";
-// import "./HomePage.css";
+import React from "react";
+import { Link } from "react-router-dom";
+import './HomePage.css'
 
-// // Course Card
-// const FeaturedCourseCard = ({ course }) => (
-//   <div className="featured-course-card">
-//     <h4>{course.title}</h4>
-//     <p>{course.description.substring(0, 90)}...</p>
-//     <div className="course-price-tag">Starting from ₹{course.price}</div>
-//     <Link to={`/course/${course.id}`} className="btn-secondary">
-//       Learn More
-//     </Link>
-//   </div>
-// );
-
-// function HomePage() {
-//   const [featuredCourses, setFeaturedCourses] = useState([]);
-
-//   useEffect(() => {
-//     const fetchCourses = async () => {
-//       try {
-//         const response = await getAllCourses();
-//         setFeaturedCourses(response.data.slice(0, 3));
-//       } catch (error) {
-//         console.error("Error fetching courses:", error);
-//       }
-//     };
-//     fetchCourses();
-//   }, []);
-
-//   return (
-//     <div className="home-page-container">
-
-//       {/* Hero Section */}
-//       <section className="home-hero">
-//         <div className="hero-overlay"></div>
-//         <div className="hero-content">
-//           <h1 className="hero-title">Unlock Your Potential. Redefine Your Future.</h1>
-//           <p className="hero-subtitle">
-//             Personalized coaching to help you navigate your career, enhance your leadership, and build a life you love.
-//           </p>
-//           <Link to="/services" className="btn-primary">Explore Our Services</Link>
-//         </div>
-//       </section>
-
-//       {/* Highlights */}
-//       <section className="home-highlights">
-//         <div className="highlight-card">🎓 500+ Students Trained</div>
-//         <div className="highlight-card">📚 30+ Courses</div>
-//         <div className="highlight-card">🏆 Certified Mentors</div>
-//         <div className="highlight-card">💼 Career Guidance</div>
-//       </section>
-
-//       {/* Services */}
-//       <section className="home-section services-overview">
-//         <h2 className="section-title">How We Can Help You Succeed</h2>
-//         <div className="services-overview-grid">
-//           <div className="service-item">
-//             <div className="service-icon">🎯</div>
-//             <h3>Career Coaching</h3>
-//             <p>Navigate transitions, discover your passion, and build a fulfilling career path.</p>
-//           </div>
-//           <div className="service-item">
-//             <div className="service-icon">🚀</div>
-//             <h3>Leadership Development</h3>
-//             <p>Move from manager to mentor and lead your team with vision and confidence.</p>
-//           </div>
-//           <div className="service-item">
-//             <div className="service-icon">💡</div>
-//             <h3>Mindset & Growth</h3>
-//             <p>Overcome limiting beliefs and cultivate a resilient mindset for success.</p>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Training Features */}
-//       <section className="training-features">
-//         <h2 className="section-title">Our Training Features</h2>
-//         <div className="features-grid">
-//           <div className="feature-card">✅ On-time Course Completion</div>
-//           <div className="feature-card">✅ Modern Infrastructure</div>
-//           <div className="feature-card">✅ Blended Training Approach</div>
-//           <div className="feature-card">✅ Free Demo Sessions</div>
-//           <div className="feature-card">✅ Affordable Fees</div>
-//         </div>
-//       </section>
-
-//       {/* Featured Courses */}
-//       {featuredCourses.length > 0 && (
-//         <section className="home-section featured-courses">
-//           <h2 className="section-title">Featured Courses</h2>
-//           <div className="featured-courses-grid">
-//             {featuredCourses.map(course => (
-//               <FeaturedCourseCard key={course.id} course={course} />
-//             ))}
-//           </div>
-//           <div className="view-all-link">
-//             <Link to="/courses" className="btn-secondary">View All Courses</Link>
-//           </div>
-//         </section>
-//       )}
-
-//       {/* Upcoming Batches */}
-//       <section className="upcoming-batches">
-//         <h2 className="section-title">Upcoming Batches</h2>
-//         <div className="batch-grid">
-//           <div className="batch-card">
-//             <h3>Career Coaching Bootcamp</h3>
-//             <p>Starts: Sept 15, 2025</p>
-//             <Link to="/contact" className="btn-secondary">Enroll Now</Link>
-//           </div>
-//           <div className="batch-card">
-//             <h3>Leadership Growth Workshop</h3>
-//             <p>Starts: Oct 1, 2025</p>
-//             <Link to="/contact" className="btn-secondary">Enroll Now</Link>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Testimonials */}
-//       <section className="home-section home-testimonial">
-//         <div className="testimonial-content-home">
-//           <img src={testimonialImage} alt="Happy coaching client" className="testimonial-image-home"/>
-//           <blockquote>
-//             "This wasn't just coaching; it was a total mindset shift. I achieved more in three months with ProCoach than I did in the last three years on my own."
-//           </blockquote>
-//           <cite>- Michael P., Tech Lead</cite>
-//         </div>
-//       </section>
-
-//       {/* Partner Logos */}
-//       <section className="partners-section">
-//         <h2 className="section-title">Our Students Work At</h2>
-//         <div className="partners-logos">
-//           <div className="partner-logo">Google</div>
-//           <div className="partner-logo">Microsoft</div>
-//           <div className="partner-logo">Amazon</div>
-//           <div className="partner-logo">Startups</div>
-//         </div>
-//       </section>
-
-//       {/* Blog / Resources */}
-//       <section className="blog-section">
-//         <h2 className="section-title">Latest Resources</h2>
-//         <div className="blog-grid">
-//           <div className="blog-card">
-//             <h3>5 Tips to Boost Your Career</h3>
-//             <p>Simple strategies to accelerate your growth and stay competitive.</p>
-//           </div>
-//           <div className="blog-card">
-//             <h3>Leadership Mindset in 2025</h3>
-//             <p>How to inspire, mentor, and lead effectively in today’s world.</p>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Final CTA */}
-//       <section className="home-cta">
-//         <h2 className="cta-title">Ready to Take Control of Your Future?</h2>
-//         <p>A complimentary 30-minute discovery call is the first step. There's no obligation, only opportunity.</p>
-//         <Link to="/contact" className="btn-primary-cta">Book Your Free Call</Link>
-//       </section>
-
-//       {/* Footer */}
-//       <footer className="site-footer">
-//         <div className="footer-grid">
-//           <div>
-//             <h3>ProCoach</h3>
-//             <p>Transforming lives with personalized coaching and training.</p>
-//           </div>
-//           <div>
-//             <h4>Quick Links</h4>
-//             <ul>
-//               <li><Link to="/">Home</Link></li>
-//               <li><Link to="/services">Services</Link></li>
-//               <li><Link to="/courses">Courses</Link></li>
-//               <li><Link to="/contact">Contact</Link></li>
-//             </ul>
-//           </div>
-//           <div>
-//             <h4>Contact</h4>
-//             <p>Email: info@procoach.com</p>
-//             <p>Phone: +91 98765 43210</p>
-//           </div>
-//         </div>
-//         <p className="footer-bottom">© 2025 ProCoach. All rights reserved.</p>
-//       </footer>
-
-//     </div>
-//   );
-// }
-
-// export default HomePage;
-
-
-import React, { useEffect } from 'react';
-import Slider from "react-slick";
-import "./HomePage.css";
-import i1 from "../assets/coaching_2.jpg";
-
-// Array of random Unsplash images for hero carousel
-const randomImages = [
-  i1,
-  "https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&w=1050&q=80",
-  "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1050&q=80"
-];
-
-export default function HomePage() {
-  // Carousel slide data (images + headlines)
-  const headerSlides = [
-    {
-      img: randomImages[0],
-      headline: "Unlock Your Potential. Redefine Your Future.",
-      sub: "Personalized coaching to navigate your career, enhance leadership, and build a life you love."
-    },
-    {
-      img: randomImages[1],
-      headline: "Lead With Confidence, Grow With Vision.",
-      sub: "Mentorship designed for tomorrow's leaders, starting today."
-    },
-    {
-      img: randomImages[2],
-      headline: "Mindset Matters. Success Follows.",
-      sub: "Transform beliefs, resilience and performance in months, not years."
-    }
-  ];
-
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 650,
-    autoplay: true,
-    autoplaySpeed: 3400,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    fade: true,
-    arrows: false
-  };
-
-  // Animated custom cursor
-  useEffect(() => {
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
-
-    function onMove(e) {
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-    }
-    window.addEventListener('mousemove', onMove);
-    return () => {
-      window.removeEventListener('mousemove', onMove);
-      document.body.removeChild(cursor);
-    }
-  }, []);
-
+function HomePage() {
   return (
-    <div className="home-page-container enhanced-bg">
-      {/* HEADER Hero Carousel */}
-      <header className="premium-header">
-        <Slider {...sliderSettings} className="header-carousel">
-          {headerSlides.map((slide, idx) => (
-            <div className="carousel-slide" key={idx}>
-              <img src={slide.img} alt={slide.headline} className="carousel-bg" />
-              <div className="carousel-content">
-                <h1 className="carousel-title">{slide.headline}</h1>
-                <p className="carousel-sub">{slide.sub}</p>
-                <a href="/services" className="carousel-btn">Explore Our Services</a>
-              </div>
-            </div>
-          ))}
-        </Slider>
-        <div className="scroll-indicator"><span></span></div>
-      </header>
-
-      {/* Highlights */}
-      <section className="home-highlights fade-in">
-        <div className="highlight-card">🎓 500+ Students Trained</div>
-        <div className="highlight-card">📚 30+ Courses</div>
-        <div className="highlight-card">🏆 Certified Mentors</div>
-        <div className="highlight-card">💼 Career Guidance</div>
+    <div className="homepage px-6 py-10 max-w-5xl mx-auto leading-7 text-gray-800">
+      {/* Hero Section */}
+      <section className="mb-12">
+        <h1 className="text-4xl font-bold mb-4">
+          Unlock Your Career Potential with Expert Coaching & Certifications
+        </h1>
+        <p>
+          Welcome to our professional training and career development platform. 
+          Whether you are a fresher just starting your journey, a working 
+          professional looking to upskill, or a leader preparing for senior 
+          management roles, we are here to support you every step of the way.
+        </p>
+        <p className="mt-4">
+          Our institute combines industry-recognized certifications, modern 
+          technology training, and career-focused services like Resume Writing, 
+          Cover Letter Drafting, and LinkedIn Profile Optimization. We ensure 
+          you stand out in competitive job markets with globally accepted 
+          credentials and a powerful professional brand.
+        </p>
       </section>
 
-      {/* Services Grid */}
-      <section className="home-section services-overview fade-in">
-        <h2 className="section-title">How We Can Help You Succeed</h2>
-        <div className="services-overview-grid">
-          <div className="service-item">
-            <div className="service-icon">🎯</div>
-            <h3>Career Coaching</h3>
-            <p>Navigate transitions, discover your passion, and build a fulfilling career path.</p>
-          </div>
-          <div className="service-item">
-            <div className="service-icon">🚀</div>
-            <h3>Leadership Development</h3>
-            <p>Move from manager to mentor and lead your team with vision and confidence.</p>
-          </div>
-          <div className="service-item">
-            <div className="service-icon">💡</div>
-            <h3>Mindset & Growth</h3>
-            <p>Overcome limiting beliefs and cultivate a resilient mindset for success.</p>
-          </div>
-        </div>
+      {/* About Section */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-3">Who We Are</h2>
+        <p>
+          We are a team of certified trainers, industry professionals, and 
+          career consultants with years of experience across IT, Management, 
+          Finance, and Business domains. Our mission is simple: empower 
+          individuals with the right skills, the right certifications, and 
+          the right presentation of their achievements.
+        </p>
+        <p className="mt-3">
+          From technical training in <strong>SQL, Java, VMware, CCNA</strong> 
+          to business-focused certifications like <strong>CBAP, CAPM, and CIA</strong>, 
+          we offer a wide variety of programs tailored to different career paths.
+        </p>
+        <p className="mt-3">
+          Additionally, our career-building services such as professional 
+          resumes, ATS-friendly cover letters, and search-engine-optimized 
+          LinkedIn profiles have helped thousands secure global opportunities.
+        </p>
       </section>
 
-      {/* Training Features */}
-      <section className="training-features fade-in">
-        <h2 className="section-title">Our Training Features</h2>
-        <div className="features-grid">
-          <div className="feature-card">✅ On-time Course Completion</div>
-          <div className="feature-card">✅ Modern Infrastructure</div>
-          <div className="feature-card">✅ Blended Training Approach</div>
-          <div className="feature-card">✅ Free Demo Sessions</div>
-          <div className="feature-card">✅ Affordable Fees</div>
-        </div>
+      {/* Services Overview */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-3">Our Core Services</h2>
+        <ul className="list-disc ml-6 space-y-2">
+          <li>
+            <strong>Professional Resume Writing:</strong> Industry-tailored 
+            resumes designed for ATS and international acceptance.{" "}
+            <Link to="/resume" className="text-blue-600 underline">
+              Explore Resume Services
+            </Link>
+          </li>
+          <li>
+            <strong>Cover Letters:</strong> Role-specific, compelling cover 
+            letters to strengthen your applications.
+          </li>
+          <li>
+            <strong>LinkedIn Profile Optimization:</strong> SEO-focused LinkedIn 
+            profiles that attract recruiters worldwide.
+          </li>
+          <li>
+            <strong>Certification Training:</strong> Globally recognized programs 
+            including Salesforce, Palo Alto, CCNA, VMware, CAMS, CIA, and more.{" "}
+            <Link to="/certifications" className="text-blue-600 underline">
+              View All Certifications
+            </Link>
+          </li>
+          <li>
+            <strong>Programming Courses:</strong> SQL, Java, and emerging 
+            technologies designed for practical, hands-on learning.
+          </li>
+          <li>
+            <strong>Career Guidance:</strong> One-on-one mentorship, job market 
+            insights, and interview preparation support.
+          </li>
+        </ul>
       </section>
 
-      {/* Upcoming Batches */}
-      <section className="upcoming-batches fade-in">
-        <h2 className="section-title">Upcoming Batches</h2>
-        <div className="batch-grid">
-          <div className="batch-card">
-            <h3>SQL</h3>
-            <p>Starts: Sept 15, 2025</p>
-            <a href="/contact" className="btn-secondary">Enroll Now</a>
-          </div>
-          <div className="batch-card">
-            <h3>Java</h3>
-            <p>Starts: Oct 1, 2025</p>
-            <a href="/contact" className="btn-secondary">Enroll Now</a>
-          </div>
-        </div>
+      {/* Why Choose Us */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-3">Why Choose Us?</h2>
+        <p>
+          Choosing the right training partner can define your career trajectory. 
+          Here’s why learners around the world trust us:
+        </p>
+        <ul className="list-decimal ml-6 space-y-2 mt-3">
+          <li>Experienced trainers with global certifications.</li>
+          <li>Courses designed around real-world applications.</li>
+          <li>Flexible learning paths for freshers, mid-level, and senior professionals.</li>
+          <li>Affordable pricing with international acceptance.</li>
+          <li>Personalized career services beyond training.</li>
+        </ul>
+      </section>
+
+      {/* Certification Highlight */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-3">Popular Certifications</h2>
+        <p>
+          Our certification portfolio spans IT, Business, Finance, and Security 
+          domains. Here are some of the most in-demand certifications we provide:
+        </p>
+        <ul className="list-disc ml-6 space-y-1 mt-3">
+          <li>Salesforce Administrator & Developer Certification</li>
+          <li>Cisco Certified Network Associate (CCNA)</li>
+          <li>Palo Alto Networks Security Certification</li>
+          <li>VMware Professional Certification</li>
+          <li>Certified Business Analysis Professional (CBAP)</li>
+          <li>Certified Anti-Money Laundering Specialist (CAMS)</li>
+          <li>Certified Internal Auditor (CIA)</li>
+          <li>Certified Associate Project Management (CAPM)</li>
+        </ul>
+        <p className="mt-4">
+          <Link to="/certifications" className="text-blue-600 underline">
+            See Full Certification List
+          </Link>
+        </p>
+      </section>
+
+      {/* Programming Courses */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-3">Programming Training</h2>
+        <p>
+          In addition to certifications, we provide hands-on programming courses 
+          that prepare you for technical interviews and industry projects:
+        </p>
+        <ul className="list-disc ml-6 space-y-1 mt-3">
+          <li><strong>SQL Training:</strong> From basics to advanced queries, optimization, and database design.</li>
+          <li><strong>Java Development:</strong> Core Java, OOP principles, JDBC, and frameworks for real-world use.</li>
+        </ul>
+      </section>
+
+      {/* Career Services */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-3">Career Services</h2>
+        <p>
+          Training alone is not enough. That’s why we go beyond certifications 
+          with a complete set of career services to boost your professional brand:
+        </p>
+        <ul className="list-disc ml-6 space-y-1 mt-3">
+          <li>Resume Writing – ATS Compatible, Globally Accepted</li>
+          <li>Cover Letters – Job-Specific & Professionally Drafted</li>
+          <li>LinkedIn Profile Optimization – SEO Friendly & Recruiter Ready</li>
+          <li>Interview Preparation – Mock Interviews & Feedback</li>
+          <li>Career Mentorship – Personalized Roadmaps & Guidance</li>
+        </ul>
       </section>
 
       {/* Testimonials */}
-      <section className="home-section home-testimonial fade-in">
-        <div className="testimonial-content-home">
-          <blockquote>
-            "This wasn't just coaching; it was a total mindset shift. I achieved more in three months with ProCoach than I did in the last three years on my own."
-          </blockquote>
-          <cite>- Devraj Kalpure</cite>
-        </div>
-      </section>
-{/* Recruiters/Partners */}
-<section className="partners-section fade-in">
-  <h2 className="section-title">Our Students Work At</h2>
-  <div className="partners-logos">
-    <img 
-      src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" 
-      alt="Google" 
-    />
-    <img 
-      src="https://logospng.org/download/microsoft/logo-microsoft-1024.png" 
-      alt="Microsoft" 
-    />
-    <img 
-      src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
-      alt="Amazon" 
-    />
-    <img 
-      src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" 
-      alt="Netflix" 
-    />
-  </div>
-</section>
-
-
-      {/* Blog/Resources */}
-      <section className="blog-section fade-in">
-        <h2 className="section-title">Latest Resources</h2>
-        <div className="blog-grid">
-          <div className="blog-card">
-            <h3>5 Tips to Boost Your Career</h3>
-            <p>Simple strategies to accelerate your growth and stay competitive.</p>
-          </div>
-          <div className="blog-card">
-            <h3>Leadership Mindset in 2025</h3>
-            <p>How to inspire, mentor, and lead effectively in today’s world.</p>
-          </div>
-        </div>
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-3">What Our Learners Say</h2>
+        <p>
+          Thousands of professionals have trusted us to shape their careers. 
+          Here’s what they have to say:
+        </p>
+        <blockquote className="border-l-4 pl-4 italic mt-3">
+          “The resume and LinkedIn services gave me confidence in my job 
+          applications. Within weeks, I was getting more interview calls than ever.”
+        </blockquote>
+        <blockquote className="border-l-4 pl-4 italic mt-3">
+          “The SQL and Java training helped me clear my technical interview. 
+          The trainers focus on practical learning, which made a huge difference.”
+        </blockquote>
       </section>
 
-      {/* CTA */}
-      <section className="home-cta fade-in">
-        <h2 className="cta-title">Ready to Take Control of Your Future?</h2>
-        <p>A complimentary 30-minute discovery call is the first step. There's no obligation, only opportunity.</p><br></br>
-        <a href="tel:+918743039914" className="btn-primary-cta">Book Your Free Call</a>
+      {/* Call to Action */}
+      <section className="mb-12 text-center">
+        <h2 className="text-2xl font-semibold mb-3">Ready to Transform Your Career?</h2>
+        <p>
+          Explore our certifications, training programs, and career services 
+          today. Take the first step toward building a career that matches 
+          your aspirations.
+        </p>
+        <div className="mt-4 space-x-6">
+          <Link to="/certifications" className="text-blue-600 underline">
+            Explore Certifications
+          </Link>
+          <Link to="/resume" className="text-blue-600 underline">
+            Explore Resume Services
+          </Link>
+        </div>
       </section>
     </div>
   );
 }
+
+export default HomePage;
