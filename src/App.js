@@ -114,7 +114,7 @@ function AppLogic() {
                     <NavLink to="/services" className="nav-item" onClick={closeMenu}>Services</NavLink>
                     <NavLink to="/resume" className="nav-item" onClick={closeMenu}>Resume</NavLink>
                     {/* ADDED: A navigation link for the blog */}
-                    <NavLink to="/interview-questions" className="nav-item" onClick={closeMenu}>Blog</NavLink>
+                    <NavLink to="/interview-questions" className="nav-item" onClick={closeMenu}>Interview Q's</NavLink>
                     <NavLink to="/about" className="nav-item" onClick={closeMenu}>About Us</NavLink>
                     <NavLink to="/contact" className="nav-item" onClick={closeMenu}>Contact Us</NavLink>
                     {isAuthenticated && (

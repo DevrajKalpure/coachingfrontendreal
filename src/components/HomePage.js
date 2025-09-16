@@ -194,9 +194,10 @@
 // }
 
 // export default HomePage;
-import React, { useState, useEffect } from 'react';
+
+
+import React, { useEffect } from 'react';
 import Slider from "react-slick";
-import testimonialImage from "../assets/client-testimonial-2.jpg";
 import "./HomePage.css";
 import i1 from "../assets/coaching_2.jpg";
 
@@ -207,35 +208,7 @@ const randomImages = [
   "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1050&q=80"
 ];
 
-// Animated Featured Course Card
-const FeaturedCourseCard = ({ course, idx }) => (
-  <div 
-    className="featured-course-card animated-card"
-    style={{ animationDelay: `${0.1 + idx * 0.18}s` }}
-  >
-    <h4>{course.title}</h4>
-    <p>{course.description.substring(0, 90)}...</p>
-    <div className="course-price-tag">Starting from ₹{course.price}</div>
-    <a href={`/course/${course.id}`} className="btn-secondary">
-      Learn More
-    </a>
-  </div>
-);
-
 export default function HomePage() {
-  const [featuredCourses, setFeaturedCourses] = useState([]);
-  
-  useEffect(() => {
-    // Simulate API (replace with getAllCourses)
-    setTimeout(() => {
-      setFeaturedCourses([
-        { id: 1, title: 'Career Mastery Accelerator', description: 'Transform your career with expert coaching, actionable insights, and lifelong skills development.', price: 1800 },
-        { id: 2, title: 'Leadership Blueprint', description: 'Become the visionary leader your team needs, cultivating emotional intelligence and strategic thinking.', price: 2200 },
-        { id: 3, title: 'Growth Mindset Intensive', description: 'Crush self-limiting beliefs, build resilience, and unlock breakthroughs for lasting success.', price: 1200 }
-      ]);
-    }, 900);
-  }, []);
-
   // Carousel slide data (images + headlines)
   const headerSlides = [
     {
@@ -345,21 +318,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Courses
-      {featuredCourses.length > 0 && (
-        <section className="home-section featured-courses fade-in">
-          <h2 className="section-title">Featured Courses</h2>
-          <div className="featured-courses-grid">
-            {featuredCourses.map((course, idx) => (
-              <FeaturedCourseCard key={course.id} course={course} idx={idx} />
-            ))}
-          </div>
-          <div className="view-all-link">
-            <a href="/courses" className="btn-secondary">View All Courses</a>
-          </div>
-        </section>
-      )} */}
-
       {/* Upcoming Batches */}
       <section className="upcoming-batches fade-in">
         <h2 className="section-title">Upcoming Batches</h2>
@@ -380,7 +338,6 @@ export default function HomePage() {
       {/* Testimonials */}
       <section className="home-section home-testimonial fade-in">
         <div className="testimonial-content-home">
-          {/* <img src={testimonialImage} alt="Happy coaching client" className="testimonial-image-home"/> */}
           <blockquote>
             "This wasn't just coaching; it was a total mindset shift. I achieved more in three months with ProCoach than I did in the last three years on my own."
           </blockquote>

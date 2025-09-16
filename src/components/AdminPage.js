@@ -208,7 +208,8 @@ function AdminPage() {
                 key={`${enquiry.type}-${enquiry.id}`}
                 className={enquiry.clarified ? "clarified" : "pending"}
               >
-                <td>
+                {/* --- ADD data-label ATTRIBUTES TO EACH <td> --- */}
+                <td data-label="Status">
                   <span
                     className={`status-badge status-${
                       enquiry.clarified ? "clarified" : "pending"
@@ -217,26 +218,17 @@ function AdminPage() {
                     {enquiry.clarified ? "Clarified" : "Pending"}
                   </span>
                 </td>
-
-                {/* Show whether it's a course or certification */}
-                <td>{enquiry.type}</td>
-
-                {/* Show courseTitle or certificationName */}
-                <td>{enquiry.title || "Untitled"}</td>
-
-
-                <td>
+                <td data-label="Type">{enquiry.type}</td>
+                <td data-label="Title">{enquiry.title || "Untitled"}</td>
+                <td data-label="Contact">
                   <strong>{enquiry.name}</strong>
                   <br />
                   {enquiry.email}
                   <br />
                   {enquiry.phone || "N/A"}
                 </td>
-
-                <td className="message-cell">{enquiry.message}</td>
-
-                {/* Toggle only for course enquiries */}
-                <td>
+                <td data-label="Message" className="message-cell">{enquiry.message}</td>
+                <td data-label="Action">
                   {enquiry.type === "course" ? (
                     <button
                       className="btn-toggle-status"
@@ -260,7 +252,6 @@ function AdminPage() {
     </div>
   </div>
 )}
-
                                                 {/* --- ADD NEW TAB CONTENT --- */}
                         {activeTab === 'interviewQuestions' && (
                             <InterviewQuestionForm />
