@@ -70,7 +70,7 @@ function AppLogic() {
     return (
         <>
             <header className="app-header">
-                <Link to="/" className="logo" onClick={closeMenu}>jstechnohub</Link>
+                <Link to="/" className="logo" onClick={closeMenu}>Jstechnohub</Link>
                 
                 <button 
                     className={`hamburger-menu ${isMenuOpen ? 'active' : ''}`} 
