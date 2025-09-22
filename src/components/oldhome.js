@@ -133,7 +133,7 @@ function HomePage() {
 
       {/* Certification Highlight */}
       <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-3">Popular Certifications</h2>
+        <h2 className="text-xl font-semibold mb-3">Popular Certifications</h2>
         <p>
           Our certification portfolio spans IT, Business, Finance, and Security 
           domains. Here are some of the most in-demand certifications we provide:

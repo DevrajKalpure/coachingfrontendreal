@@ -3,7 +3,7 @@
 .cert-list-container {
     max-width: 1200px;
     margin: 100px auto;
-    padding: 3rem 2rem;
+    padding: 0rem 2rem;
     animation: fadeIn 0.8s ease-in-out;
 }
 
@@ -16,7 +16,7 @@
     text-align: center;
     font-size: 2.8rem;
     color: var(--heading-color);
-    margin-bottom: 32rem;
+    margin-bottom: 4rem;
     border-bottom: 3px solid var(--primary-color);
     display: inline-block;
     padding-bottom: 0.5rem;
