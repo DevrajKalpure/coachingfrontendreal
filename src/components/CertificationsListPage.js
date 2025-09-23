@@ -12,6 +12,7 @@ const certifications = [
   { name: 'CAMS Training & Certification', path: '/certifications/cams-training' },
   { name: 'Certified Internal Auditor (CIA)', path: '/certifications/cia-training' },
   { name: 'Certified Associate Project Management (CAPM)', path: '/certifications/capm-training' },
+  { name: 'Project Management Professional (PMP)', path: '/certifications/pmp' },
 ];
 
 function CertificationsListPage() {

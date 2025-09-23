@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllCourses, createCourse, updateCourse, deleteCourse, getAllEnquiries, toggleEnquiryClarified } from '../services/api';
+import { getAllCourses, createCourse, updateCourse, deleteCourse, getAllEnquiries, toggleEnquiryClarified,getAllReviews,toggleReviewApproval } from '../services/api';
 import './AdminPage.css';
 import InterviewQuestionForm from './InterviewQuestionForm';
 
@@ -70,20 +70,40 @@ function AdminPage() {
     const [currentCourse, setCurrentCourse] = useState({ title: '', description: '', price: '', startDate: '', duration: '', timings: '' });
     const [isEditing, setIsEditing] = useState(false);
 
-    useEffect(() => {
-        const fetchAllData = async () => {
-            setIsLoading(true);
-            try {
-                const [coursesRes, enquiriesRes] = await Promise.all([getAllCourses(), getAllEnquiries()]);
-                setCourses(coursesRes.data);
-                setEnquiries(enquiriesRes.data.sort((a, b) => a.clarified - b.clarified));
-            } catch (error) {
-                console.error("Failed to fetch admin data:", error);
-            }
-            setIsLoading(false);
-        };
-        fetchAllData();
-    }, []);
+    const [reviews, setReviews] = useState([]);
+
+    const handleToggleReview = async (id) => {
+  try {
+    await toggleReviewApproval(id);
+    const updatedReviews = await getAllReviews();
+    setReviews(updatedReviews.data);
+  } catch (error) {
+    console.error("Failed to toggle review approval:", error);
+    alert("Could not update review status.");
+  }
+};
+
+    
+   useEffect(() => {
+  const fetchAllData = async () => {
+    setIsLoading(true);
+    try {
+      const [coursesRes, enquiriesRes, reviewsRes] = await Promise.all([
+        getAllCourses(),
+        getAllEnquiries(),
+        getAllReviews()
+      ]);
+      setCourses(coursesRes.data);
+      setEnquiries(enquiriesRes.data.sort((a,b) => a.clarified - b.clarified));
+      setReviews(reviewsRes.data);
+    } catch (error) {
+      console.error("Failed to fetch admin data:", error);
+    }
+    setIsLoading(false);
+  };
+  fetchAllData();
+}, []);
+
 
     const resetAndSwitchToExisting = () => {
         setCurrentCourse({ title: '', description: '', price: '', startDate: '', duration: '', timings: '' });
@@ -149,6 +169,8 @@ function AdminPage() {
                 <button className={`tab-button ${activeTab === 'existing' ? 'active' : ''}`} onClick={() => setActiveTab('existing')}>Existing Courses</button>
                 <button className={`tab-button ${activeTab === 'enquiries' ? 'active' : ''}`} onClick={() => setActiveTab('enquiries')}>Manage Enquiries</button>
                 <button className={`tab-button ${activeTab === 'interviewQuestions' ? 'active' : ''}`} onClick={() => setActiveTab('interviewQuestions')}>Interview Questions</button>
+                <button className={`tab-button ${activeTab === 'reviews' ? 'active' : ''}`} onClick={() => setActiveTab('reviews')}>Manage Reviews</button>
+
             </div>
 
             <div className="tab-content">
@@ -256,6 +278,47 @@ function AdminPage() {
                         {activeTab === 'interviewQuestions' && (
                             <InterviewQuestionForm />
                         )}
+
+                        {activeTab === 'reviews' && (
+  <div className="admin-section card">
+    <h2>All Reviews ({reviews.length})</h2>
+    <div className="review-table-container">
+      <table className="review-table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Message</th>
+            <th>Rating</th>
+            <th>Created At</th>
+            <th>Approved</th>
+          </tr>
+        </thead>
+        <tbody>
+          {reviews.length > 0 ? reviews.map(review => (
+            <tr key={review.id} className={review.approved ? "approved" : "pending"}>
+              <td>{review.name}<br/><small>{review.email}</small></td>
+              <td>{review.message}</td>
+              <td>{review.rating} ⭐</td>
+              <td>{review.createdAt ? new Date(review.createdAt).toLocaleString() : "-"}</td>
+              <td>
+                <button
+                  className={`btn-toggle-status ${review.approved ? 'approved-btn' : 'pending-btn'}`}
+                  onClick={() => handleToggleReview(review.id)}
+                >
+                  {review.approved ? "Approved" : "Pending"}
+                </button>
+              </td>
+            </tr>
+          )) : (
+            <tr>
+              <td colSpan="6">No reviews found.</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  </div>
+)}
 
                     </>
                 )}

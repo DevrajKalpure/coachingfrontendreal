@@ -108,6 +108,7 @@ function AppLogic() {
                             <NavLink to="/certifications/cams-training" className="dropdown-link" onClick={closeMenu}>CAMS Training & Certification</NavLink>
                             <NavLink to="/certifications/cia-training" className="dropdown-link" onClick={closeMenu}>Certified Internal Auditor (CIA)</NavLink>
                             <NavLink to="/certifications/capm-training" className="dropdown-link" onClick={closeMenu}>Certified Associate Project Management (CAPM)</NavLink>
+                            <NavLink to="/certifications/pmp" className="dropdown-link" onClick={closeMenu}>Project Management Professional (PMP)</NavLink>
                         </div>
                     </div>
 

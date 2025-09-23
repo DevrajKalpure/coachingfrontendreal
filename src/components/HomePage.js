@@ -1,8 +1,105 @@
-import React, { useEffect } from "react"; // Import useEffect
+import React, { useEffect,useState } from "react"; // Import useEffect
 import { Link } from "react-router-dom";
 import './HomePage.css'; // Your new CSS file
+import { addReview,getPublicReviews } from "../services/api";
+
+// A reusable component for the star rating
+const StarRating = ({ rating }) => (
+    <div className="star-rating">
+        {[...Array(5)].map((_, i) => <span key={i} className={i < rating ? 'filled' : ''}>★</span>)}
+    </div>
+);
+
+// A reusable component for the review form modal
+const ReviewFormModal = ({ onSubmit, onClose }) => {
+    const [newReview, setNewReview] = useState({ name: "", email: "", message: "", rating: 5 });
+
+    const handleChange = (e) => {
+        setNewReview({ ...newReview, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(newReview);
+    };
+
+    return (
+        <div className="modal-overlay" onClick={onClose}>
+  <div className="modal-content" onClick={e => e.stopPropagation()}>
+    <button className="close-btn" onClick={onClose}>&times;</button>
+    <h3>Write a Review</h3>
+    <p>Share your experience to help others on their career journey.</p>
+    <form onSubmit={handleSubmit}>
+      <input 
+        type="text" 
+        name="name" 
+        placeholder="Your Full Name" 
+        value={newReview.name} 
+        onChange={handleChange} 
+        required 
+      />
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="Your Email" 
+        value={newReview.email} 
+        onChange={handleChange} 
+        required 
+      />
+      <textarea 
+        name="message" 
+        placeholder="Your feedback..." 
+        value={newReview.message} 
+        rows="4" 
+        onChange={handleChange} // important!
+        required 
+      />
+      <select name="rating" value={newReview.rating} onChange={handleChange}>
+        {[5, 4, 3, 2, 1].map(r => <option key={r} value={r}>{r} Stars</option>)}
+      </select>
+      <button type="submit" className="btn btn-primary">Submit Review</button>
+    </form>
+  </div>
+</div>
+    );
+};
 
 function HomePage() {
+  const [reviews, setReviews] = useState([]);
+    const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+
+    useEffect(() => {
+        // Fetch approved public reviews
+        getPublicReviews()
+            .then(res => setReviews(res.data))
+            .catch(err => console.error("Failed to fetch reviews:", err));
+        
+        // Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('.homepage section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+        return () => sections.forEach(section => observer.unobserve(section));
+    }, []);
+
+    const handleAddReview = (reviewData) => {
+        addReview(reviewData)
+            .then(() => {
+                alert("Thank you! Your review has been submitted for approval.");
+                setIsReviewModalOpen(false);
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Sorry, there was an error submitting your review.");
+            });
+    };
+
   // useEffect to handle scroll animations
   useEffect(() => {
     const sections = document.querySelectorAll('.homepage section');
@@ -201,6 +298,38 @@ function HomePage() {
         </blockquote>
       </section>
 
+<section className="reviews-section">
+  <h2>What Our Learners Say</h2>
+  <div className="reviews-list">
+    {reviews.length > 0 ? reviews
+      .filter(review => review.approved && review.message?.trim() !== "") // show only approved reviews
+      .map(review => (
+        <div key={review.id} className="review-card">
+          <StarRating rating={review.rating} />
+          <blockquote className="review-comment">{review.message}</blockquote>
+          <cite className="review-author">— {review.name}</cite>
+          <span className="review-date">
+            {review.createdAt 
+              ? new Date(review.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) 
+              : ''}
+          </span>
+        </div>
+      )) 
+      : <p>Be the first to share your feedback!</p>
+    }
+  </div>
+
+  <div className="review-cta">
+    <button onClick={() => setIsReviewModalOpen(true)} className="btn btn-secondary">
+      + Add Your Review
+    </button>
+  </div>
+</section>
+
+{isReviewModalOpen && 
+  <ReviewFormModal onSubmit={handleAddReview} onClose={() => setIsReviewModalOpen(false)} />
+}
+    
       {/* Call to Action */}
       <section className="mb-12 text-center">
         <h2 className="text-2xl font-semibold mb-3">Ready to Transform Your Career?</h2>

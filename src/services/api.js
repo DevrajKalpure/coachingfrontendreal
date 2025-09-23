@@ -86,4 +86,18 @@ export const addInterviewQuestion = (questionData) =>
 export const getAllInterviewQuestions = () =>
   api.get('/interview-questions');
 
+
+// Get approved reviews (for public)
+export const getPublicReviews = () => api.get("/reviews/public");
+
+// Get all reviews (for admin)
+export const getAllReviews = () => api.get("/reviews/admin");
+
+// Add new review (from user)
+export const addReview = (reviewData) => api.post("/reviews", reviewData);
+
+// Toggle review approval (admin)
+export const toggleReviewApproval = (reviewId) =>
+  api.patch(`/reviews/${reviewId}/toggle`);
+
 export default api;
